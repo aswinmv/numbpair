@@ -1,6 +1,15 @@
 import React from 'react';
 
-export const Footer: React.FC = () => {
+interface FooterProps {
+  gameStarted: boolean;
+}
+
+export const Footer: React.FC<FooterProps> = ({ gameStarted }) => {
+  // Only show footer when game is started
+  if (!gameStarted) {
+    return null;
+  }
+
   return (
     <div className="w-full bg-white border-t border-gray-100 py-2 px-4 flex-shrink-0">
       <div className="max-w-xs sm:max-w-sm mx-auto">

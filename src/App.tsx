@@ -104,8 +104,8 @@ function App() {
         </div>
       </div>
 
-      {/* Footer */}
-      <Footer />
+      {/* Footer - Only show during gameplay */}
+      <Footer gameStarted={gameStats.gameStarted} />
     </div>
   );
 }
