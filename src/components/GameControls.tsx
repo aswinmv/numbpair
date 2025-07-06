@@ -39,13 +39,6 @@ export const GameControls: React.FC<GameControlsProps> = ({
     active:bg-gray-100
   `;
 
-  const hintButton = `
-    ${buttonClasses}
-    bg-gradient-to-r from-blue-50 to-purple-50 text-blue-700 border-blue-200
-    hover:from-blue-100 hover:to-purple-100 hover:border-blue-300 hover:shadow-md
-    hover:text-blue-800 active:from-blue-200 active:to-purple-200
-  `;
-
   const accentButton = `
     ${buttonClasses}
     bg-green-50 text-green-700 border-green-200
@@ -74,7 +67,7 @@ export const GameControls: React.FC<GameControlsProps> = ({
           </button>
         )}
         
-        <button onClick={onGetHint} className={hintButton}>
+        <button onClick={onGetHint} className={primaryButton}>
           <Lightbulb className="w-4 h-4" />
           <span>Hint</span>
         </button>
