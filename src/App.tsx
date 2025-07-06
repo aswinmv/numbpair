@@ -40,7 +40,7 @@ function App() {
           
           {/* Header - Centered */}
           <div className="text-center space-y-1 flex-shrink-0">
-            <h1 className="text-2xl sm:text-2xl md:text-3xl font-bold text-black tracking-wide">
+            <h1 className="text-2xl sm:text-2xl md:text-3xl font-bold text-black tracking-wide font-space-grotesk">
               Numbpair
             </h1>
           </div>

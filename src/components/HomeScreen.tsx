@@ -45,9 +45,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onStartGame }) => {
           }`}
         >
           <h1 
-            className="text-5xl sm:text-6xl font-bold text-black mb-2"
+            className="text-5xl sm:text-6xl font-bold text-black mb-2 font-space-grotesk"
             style={{
-              fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
               letterSpacing: '-0.02em',
               lineHeight: '1.1'
             }}
@@ -65,9 +64,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onStartGame }) => {
           }`}
         >
           <p 
-            className="text-gray-500 text-sm sm:text-base font-light px-2 whitespace-nowrap"
+            className="text-gray-500 text-sm sm:text-base font-light px-2 whitespace-nowrap font-space-grotesk"
             style={{
-              fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
               letterSpacing: '0.01em'
             }}
           >
@@ -85,9 +83,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onStartGame }) => {
         >
           <button
             onClick={onStartGame}
-            className="group inline-flex items-center justify-center space-x-3 px-8 py-4 bg-black text-white rounded-full font-medium text-lg transition-all duration-300 ease-out hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl touch-manipulation min-h-[56px]"
+            className="group inline-flex items-center justify-center space-x-3 px-8 py-4 bg-black text-white rounded-full font-medium text-lg transition-all duration-300 ease-out hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl touch-manipulation min-h-[56px] font-space-grotesk"
             style={{
-              fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
               letterSpacing: '0.01em'
             }}
           >
