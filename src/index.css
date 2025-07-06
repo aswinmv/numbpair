@@ -35,35 +35,6 @@
   }
 }
 
-/* Minimal dark background with subtle texture */
-@layer utilities {
-  .minimal-dark-bg {
-    background: 
-      radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.02) 0%, transparent 70%),
-      radial-gradient(ellipse at center, #1a1a1a 0%, #000000 100%);
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .minimal-dark-bg::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: 
-      url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.015'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 0;
-  }
-  
-  .minimal-dark-bg > * {
-    position: relative;
-    z-index: 1;
-  }
-}
-
 /* Touch-friendly interactions */
 @layer utilities {
   .touch-manipulation {
@@ -160,14 +131,6 @@
   .shadow-lg {
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   }
-  
-  .shadow-xl {
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  }
-  
-  .shadow-2xl {
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  }
 }
 
 /* Focus styles for accessibility */
@@ -175,7 +138,7 @@
   .focus-visible\:ring-2:focus-visible {
     outline: 2px solid transparent;
     outline-offset: 2px;
-    box-shadow: 0 0 0 2px #ffffff;
+    box-shadow: 0 0 0 2px #3b82f6;
   }
 }
 
@@ -253,35 +216,4 @@
     min-width: 44px;
     font-size: 1.05rem;
   }
-}
-
-/* Premium app-inspired animations */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-.animate-fade-in-up {
-  animation: fadeInUp 0.6s ease-out;
-}
-
-.animate-scale-in {
-  animation: scaleIn 0.4s ease-out;
 }
