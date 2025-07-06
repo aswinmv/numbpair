@@ -21,6 +21,23 @@ export interface GameStats {
   gameStarted: boolean;
 }
 
+// Haptic feedback utility
+const triggerHapticFeedback = () => {
+  if ('vibrate' in navigator) {
+    // Short vibration for wrong match
+    navigator.vibrate(100);
+  }
+  
+  // For iOS devices that support haptic feedback
+  if ('hapticFeedback' in window) {
+    try {
+      (window as any).hapticFeedback.impact('medium');
+    } catch (e) {
+      // Silently fail if haptic feedback is not available
+    }
+  }
+};
+
 export const useGameLogic = () => {
   const [grid, setGrid] = useState<Tile[][]>([]);
   const [selectedTiles, setSelectedTiles] = useState<SelectedTile[]>([]);
@@ -127,7 +144,9 @@ export const useGameLogic = () => {
           }));
           return [];
         } else {
-          // Invalid match, select new tile
+          // Invalid match - trigger haptic feedback
+          triggerHapticFeedback();
+          // Select new tile
           return [tileWithIndex];
         }
       }
