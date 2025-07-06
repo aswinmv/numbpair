@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Play } from 'lucide-react';
 
 interface HomeScreenProps {
@@ -8,7 +7,6 @@ interface HomeScreenProps {
 
 export const HomeScreen: React.FC<HomeScreenProps> = ({ onStartGame }) => {
   const [animationStep, setAnimationStep] = useState(0);
-  const navigate = useNavigate();
 
   useEffect(() => {
     // Trigger animations with delays
@@ -22,11 +20,6 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onStartGame }) => {
       clearTimeout(timer3);
     };
   }, []);
-
-  const handleStartGame = () => {
-    onStartGame(); // Initialize the game state
-    navigate('/game'); // Navigate to the game route
-  };
 
   return (
     <div 
@@ -89,7 +82,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onStartGame }) => {
           }`}
         >
           <button
-            onClick={handleStartGame}
+            onClick={onStartGame}
             className="group inline-flex items-center justify-center space-x-3 px-8 py-4 bg-black text-white rounded-full font-medium text-lg transition-all duration-300 ease-out hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl touch-manipulation min-h-[56px] font-space-grotesk"
             style={{
               letterSpacing: '0.01em'
