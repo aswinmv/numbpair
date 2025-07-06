@@ -65,13 +65,13 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onStartGame }) => {
           }`}
         >
           <p 
-            className="text-gray-500 text-base sm:text-lg font-light leading-relaxed px-2"
+            className="text-gray-500 text-sm sm:text-base font-light px-2 whitespace-nowrap"
             style={{
               fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
               letterSpacing: '0.01em'
             }}
           >
-            Match identical numbers or pairs that add up to 10
+            Match identical numbers or pairs that sum to 10
           </p>
         </div>
 
