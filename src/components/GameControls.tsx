@@ -19,53 +19,54 @@ export const GameControls: React.FC<GameControlsProps> = ({
   onGetHint
 }) => {
   const buttonClasses = `
-    inline-flex items-center justify-center space-x-2 px-3 sm:px-4 py-2 sm:py-2.5 text-sm font-medium
-    rounded-xl transition-all duration-200 border-2
-    hover:scale-105 active:scale-95 shadow-sm
-    touch-manipulation min-h-[44px] min-w-[44px]
-  `;
-
-  const primaryButton = `
-    ${buttonClasses}
-    bg-gray-900 text-white border-gray-900
-    hover:bg-gray-800 hover:shadow-md
-    active:bg-gray-800
+    inline-flex items-center justify-center space-x-2 px-4 sm:px-6 py-3 sm:py-4 text-sm font-medium
+    rounded-2xl transition-all duration-300 border
+    hover:scale-105 active:scale-95 shadow-lg
+    touch-manipulation min-h-[56px] min-w-[56px]
   `;
 
   const homeScreenButton = `
     ${buttonClasses}
-    bg-white/20 text-white border-white/30 backdrop-blur-sm
-    hover:bg-white/30 hover:border-white/40 hover:shadow-lg
-    active:bg-white/40 drop-shadow-lg
+    bg-white text-black border-white font-bold text-lg
+    hover:bg-gray-100 hover:shadow-xl
+    active:bg-gray-200 px-12 py-4
+    shadow-2xl
+  `;
+
+  const primaryButton = `
+    ${buttonClasses}
+    bg-white text-black border-white
+    hover:bg-gray-100 hover:shadow-xl
+    active:bg-gray-200
   `;
 
   const secondaryButton = `
     ${buttonClasses}
-    bg-white text-gray-700 border-gray-200
-    hover:bg-gray-50 hover:border-gray-300 hover:shadow-md
-    active:bg-gray-100
+    bg-gray-800 text-white border-gray-700
+    hover:bg-gray-700 hover:border-gray-600 hover:shadow-xl
+    active:bg-gray-600
   `;
 
   const hintButton = `
     ${buttonClasses}
-    bg-gradient-to-r from-blue-50 to-purple-50 text-blue-700 border-blue-200
-    hover:from-blue-100 hover:to-purple-100 hover:border-blue-300 hover:shadow-md
-    hover:text-blue-800 active:from-blue-200 active:to-purple-200
+    bg-gray-800 text-white border-gray-700
+    hover:bg-gray-700 hover:border-gray-600 hover:shadow-xl
+    active:bg-gray-600
   `;
 
   const accentButton = `
     ${buttonClasses}
-    bg-green-50 text-green-700 border-green-200
-    hover:bg-green-100 hover:border-green-300 hover:shadow-md
-    active:bg-green-200
+    bg-white text-black border-white
+    hover:bg-gray-100 hover:shadow-xl
+    active:bg-gray-200
   `;
 
   if (!gameStarted) {
     return (
       <div className="w-full max-w-sm flex justify-center">
         <button onClick={onStartGame} className={homeScreenButton}>
-          <Play className="w-4 h-4" />
-          <span>Start Game</span>
+          <Play className="w-5 h-5" />
+          <span>PLAY</span>
         </button>
       </div>
     );
@@ -73,7 +74,7 @@ export const GameControls: React.FC<GameControlsProps> = ({
 
   return (
     <div className="w-full max-w-sm flex justify-center">
-      <div className="flex gap-2 flex-wrap justify-center">
+      <div className="flex gap-3 flex-wrap justify-center">
         {!hasAvailableMatches && (
           <button onClick={onAddRow} className={accentButton}>
             <Plus className="w-4 h-4" />

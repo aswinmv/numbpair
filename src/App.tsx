@@ -29,8 +29,8 @@ function App() {
   return (
     <div className={`min-h-screen min-h-[100dvh] flex flex-col overflow-hidden ${
       !gameStats.gameStarted 
-        ? 'gradient-home-bg' 
-        : 'bg-gray-50'
+        ? 'minimal-dark-bg' 
+        : 'bg-gray-900'
     }`}>
       {/* Main Content Container */}
       <div className="flex-1 flex flex-col items-center justify-center px-3 py-2 sm:py-3 overflow-hidden">
@@ -38,15 +38,11 @@ function App() {
           
           {/* Header - Centered */}
           <div className="text-center space-y-1 flex-shrink-0">
-            <h1 className={`text-2xl sm:text-2xl md:text-3xl font-bold tracking-wide ${
-              !gameStats.gameStarted 
-                ? 'text-white drop-shadow-lg' 
-                : 'text-black'
-            }`}>
-              Numbpair
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight">
+              NUMBPAIR
             </h1>
             {!gameStats.gameStarted && (
-              <p className="text-xs sm:text-sm text-white/90 leading-relaxed px-4 drop-shadow-md">
+              <p className="text-sm sm:text-base text-white/70 leading-relaxed px-4 font-light">
                 Match identical numbers or pairs that sum to 10
               </p>
             )}
@@ -91,7 +87,7 @@ function App() {
 
           {/* Start Game Button - Positioned below title for better mobile access */}
           {!gameStats.gameStarted && (
-            <div className="flex justify-center flex-shrink-0 w-full pt-4">
+            <div className="flex justify-center flex-shrink-0 w-full pt-8">
               <GameControls
                 gameStarted={gameStats.gameStarted}
                 hasAvailableMatches={hasAvailableMatches}

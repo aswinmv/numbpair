@@ -26,8 +26,8 @@ export const Tile: React.FC<TileProps> = ({
 
   const getBaseClasses = () => {
     return `
-      aspect-square w-full min-w-0 text-base sm:text-lg md:text-xl font-bold rounded-lg
-      transition-all duration-200 select-none flex items-center justify-center
+      aspect-square w-full min-w-0 text-base sm:text-lg md:text-xl font-bold rounded-xl
+      transition-all duration-300 select-none flex items-center justify-center
       touch-manipulation
       ${isAnimating ? 'scale-0 opacity-0' : ''}
     `;
@@ -39,42 +39,42 @@ export const Tile: React.FC<TileProps> = ({
     }
     
     if (tile.isPlaceholder) {
-      return 'bg-gray-50 text-gray-300 cursor-default border border-gray-100';
+      return 'bg-gray-800/30 text-gray-600 cursor-default border border-gray-700/50';
     }
 
     if (tile.isMatched) {
-      return 'bg-gray-100 text-gray-500 cursor-default border border-gray-200 font-bold';
+      return 'bg-gray-800/50 text-gray-500 cursor-default border border-gray-700/50 font-bold';
     }
 
     if (isHinted) {
       return `
-        bg-gradient-to-br from-blue-100 to-purple-100 text-gray-900 
-        border-2 border-blue-300 cursor-pointer shadow-lg
-        animate-pulse ring-2 ring-blue-200 ring-opacity-75
-        active:scale-95 active:shadow-md
+        bg-white text-black scale-110 shadow-2xl
+        border-2 border-white cursor-pointer
+        animate-pulse ring-4 ring-white/30
+        active:scale-105 active:shadow-xl
       `;
     }
 
     if (isSelected) {
       return `
-        bg-gray-900 text-white scale-105 shadow-lg
-        border-2 border-gray-900 cursor-pointer
-        active:scale-100 active:shadow-xl
+        bg-white text-black scale-110 shadow-2xl
+        border-2 border-white cursor-pointer
+        active:scale-105 active:shadow-xl
       `;
     }
 
     return `
-      bg-white text-gray-900 border-2 border-gray-200
-      hover:bg-gray-50 hover:border-gray-300 hover:scale-105
-      active:scale-95 cursor-pointer shadow-sm
-      active:bg-gray-100 active:shadow-md
+      bg-gray-800 text-white border border-gray-700
+      hover:bg-gray-700 hover:border-gray-600 hover:scale-105 hover:shadow-xl
+      active:scale-95 cursor-pointer shadow-lg
+      active:bg-gray-600
     `;
   };
 
   const getTileContent = () => {
     if (tile.isEmpty) return '';
     if (tile.isPlaceholder) return '·';
-    if (tile.isMatched) return 'N';
+    if (tile.isMatched) return '×';
     return tile.value;
   };
 
