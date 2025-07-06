@@ -64,7 +64,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onStartGame }) => {
           }`}
         >
           <p 
-            className="text-gray-500 text-sm sm:text-base font-light px-2 whitespace-nowrap font-space-grotesk"
+            className="text-gray-500 text-sm sm:text-base font-light px-2 font-space-grotesk"
             style={{
               letterSpacing: '0.01em'
             }}
