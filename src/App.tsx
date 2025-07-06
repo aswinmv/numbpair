@@ -5,6 +5,7 @@ import { GameControls } from './components/GameControls';
 import { ScoreBoard } from './components/ScoreBoard';
 import { HowToPlay } from './components/HowToPlay';
 import { Footer } from './components/Footer';
+import { HomeScreen } from './components/HomeScreen';
 
 function App() {
   const {
@@ -26,6 +27,11 @@ function App() {
     showHint();
   };
 
+  // Show home screen when game is not started
+  if (!gameStats.gameStarted) {
+    return <HomeScreen onStartGame={startGame} />;
+  }
+
   return (
     <div className="min-h-screen min-h-[100dvh] bg-gray-50 flex flex-col overflow-hidden">
       {/* Main Content Container */}
@@ -37,70 +43,43 @@ function App() {
             <h1 className="text-2xl sm:text-2xl md:text-3xl font-bold text-black tracking-wide">
               Numbpair
             </h1>
-            {!gameStats.gameStarted && (
-              <p className="text-xs sm:text-sm text-gray-500 leading-relaxed px-4">
-                Match identical numbers or pairs that sum to 10
-              </p>
-            )}
           </div>
 
           {/* Score Board - Centered */}
-          {gameStats.gameStarted && (
-            <div className="flex justify-center flex-shrink-0 w-full">
-              <ScoreBoard 
-                gameStats={gameStats} 
-                hasAvailableMatches={hasAvailableMatches}
-              />
-            </div>
-          )}
+          <div className="flex justify-center flex-shrink-0 w-full">
+            <ScoreBoard 
+              gameStats={gameStats} 
+              hasAvailableMatches={hasAvailableMatches}
+            />
+          </div>
 
-          {/* Game Controls - Centered (only when game is active) */}
-          {gameStats.gameStarted && (
-            <div className="flex justify-center flex-shrink-0 w-full">
-              <GameControls
-                gameStarted={gameStats.gameStarted}
-                hasAvailableMatches={hasAvailableMatches}
-                onStartGame={startGame}
-                onResetGame={resetGame}
-                onAddRow={addNewRow}
-                onGetHint={handleHint}
-              />
-            </div>
-          )}
+          {/* Game Controls - Centered */}
+          <div className="flex justify-center flex-shrink-0 w-full">
+            <GameControls
+              gameStarted={gameStats.gameStarted}
+              hasAvailableMatches={hasAvailableMatches}
+              onStartGame={startGame}
+              onResetGame={resetGame}
+              onAddRow={addNewRow}
+              onGetHint={handleHint}
+            />
+          </div>
 
           {/* Game Grid - Centered */}
-          {gameStats.gameStarted && (
-            <div className="flex justify-center flex-1 w-full min-h-0 items-center">
-              <GameGrid
-                grid={grid}
-                animatingTiles={animatingTiles}
-                isTileSelected={isTileSelected}
-                isTileHinted={isTileHinted}
-                onTileClick={selectTile}
-              />
-            </div>
-          )}
+          <div className="flex justify-center flex-1 w-full min-h-0 items-center">
+            <GameGrid
+              grid={grid}
+              animatingTiles={animatingTiles}
+              isTileSelected={isTileSelected}
+              isTileHinted={isTileHinted}
+              onTileClick={selectTile}
+            />
+          </div>
 
-          {/* Start Game Button - Positioned below title for better mobile access */}
-          {!gameStats.gameStarted && (
-            <div className="flex justify-center flex-shrink-0 w-full pt-4">
-              <GameControls
-                gameStarted={gameStats.gameStarted}
-                hasAvailableMatches={hasAvailableMatches}
-                onStartGame={startGame}
-                onResetGame={resetGame}
-                onAddRow={addNewRow}
-                onGetHint={handleHint}
-              />
-            </div>
-          )}
-
-          {/* How to Play - Centered (when game is active) */}
-          {gameStats.gameStarted && (
-            <div className="flex justify-center flex-shrink-0 w-full">
-              <HowToPlay />
-            </div>
-          )}
+          {/* How to Play - Centered */}
+          <div className="flex justify-center flex-shrink-0 w-full">
+            <HowToPlay />
+          </div>
         </div>
       </div>
 
