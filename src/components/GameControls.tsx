@@ -1,5 +1,6 @@
 import React from 'react';
-import { Play, RotateCcw, Lightbulb, Plus } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { Play, RotateCcw, Lightbulb, Plus, Home } from 'lucide-react';
 
 interface GameControlsProps {
   gameStarted: boolean;
@@ -18,6 +19,8 @@ export const GameControls: React.FC<GameControlsProps> = ({
   onAddRow,
   onGetHint
 }) => {
+  const navigate = useNavigate();
+
   const buttonClasses = `
     inline-flex items-center justify-center space-x-2 px-3 sm:px-4 py-2 sm:py-2.5 text-sm font-medium
     rounded-xl transition-all duration-200 border-2
@@ -53,6 +56,22 @@ export const GameControls: React.FC<GameControlsProps> = ({
     active:bg-green-200
   `;
 
+  const homeButton = `
+    ${buttonClasses}
+    bg-orange-50 text-orange-700 border-orange-200
+    hover:bg-orange-100 hover:border-orange-300 hover:shadow-md
+    active:bg-orange-200
+  `;
+
+  const handleHomeClick = () => {
+    navigate('/');
+  };
+
+  const handleResetGame = () => {
+    onResetGame();
+    // Stay on the game page after reset
+  };
+
   if (!gameStarted) {
     return (
       <div className="w-full max-w-sm flex justify-center">
@@ -79,9 +98,14 @@ export const GameControls: React.FC<GameControlsProps> = ({
           <span>Hint</span>
         </button>
         
-        <button onClick={onResetGame} className={secondaryButton}>
+        <button onClick={handleResetGame} className={secondaryButton}>
           <RotateCcw className="w-4 h-4" />
           <span>Reset</span>
+        </button>
+
+        <button onClick={handleHomeClick} className={homeButton}>
+          <Home className="w-4 h-4" />
+          <span>Home</span>
         </button>
       </div>
     </div>
