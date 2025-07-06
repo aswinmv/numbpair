@@ -32,6 +32,13 @@ export const GameControls: React.FC<GameControlsProps> = ({
     active:bg-gray-800
   `;
 
+  const homeScreenButton = `
+    ${buttonClasses}
+    bg-white/20 text-white border-white/30 backdrop-blur-sm
+    hover:bg-white/30 hover:border-white/40 hover:shadow-lg
+    active:bg-white/40 drop-shadow-lg
+  `;
+
   const secondaryButton = `
     ${buttonClasses}
     bg-white text-gray-700 border-gray-200
@@ -56,7 +63,7 @@ export const GameControls: React.FC<GameControlsProps> = ({
   if (!gameStarted) {
     return (
       <div className="w-full max-w-sm flex justify-center">
-        <button onClick={onStartGame} className={primaryButton}>
+        <button onClick={onStartGame} className={homeScreenButton}>
           <Play className="w-4 h-4" />
           <span>Start Game</span>
         </button>

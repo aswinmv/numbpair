@@ -27,18 +27,26 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen min-h-[100dvh] bg-gray-50 flex flex-col overflow-hidden">
+    <div className={`min-h-screen min-h-[100dvh] flex flex-col overflow-hidden ${
+      !gameStats.gameStarted 
+        ? 'gradient-home-bg' 
+        : 'bg-gray-50'
+    }`}>
       {/* Main Content Container */}
       <div className="flex-1 flex flex-col items-center justify-center px-3 py-2 sm:py-3 overflow-hidden">
         <div className="w-full max-w-sm sm:max-w-md space-y-2 sm:space-y-3 flex flex-col items-center h-full justify-center">
           
           {/* Header - Centered */}
           <div className="text-center space-y-1 flex-shrink-0">
-            <h1 className="text-2xl sm:text-2xl md:text-3xl font-bold text-black tracking-wide">
+            <h1 className={`text-2xl sm:text-2xl md:text-3xl font-bold tracking-wide ${
+              !gameStats.gameStarted 
+                ? 'text-white drop-shadow-lg' 
+                : 'text-black'
+            }`}>
               Numbpair
             </h1>
             {!gameStats.gameStarted && (
-              <p className="text-xs sm:text-sm text-gray-500 leading-relaxed px-4">
+              <p className="text-xs sm:text-sm text-white/90 leading-relaxed px-4 drop-shadow-md">
                 Match identical numbers or pairs that sum to 10
               </p>
             )}
