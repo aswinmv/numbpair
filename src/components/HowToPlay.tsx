@@ -34,7 +34,7 @@ export const HowToPlay: React.FC = () => {
           
           <div className="flex items-start space-x-2">
             <span className="text-gray-400 mt-0.5 flex-shrink-0">•</span>
-            <span>Add new rows when no matches are available</span>
+            <span>Reset the rows when no matches are available</span>
           </div>
         </div>
       </div>
