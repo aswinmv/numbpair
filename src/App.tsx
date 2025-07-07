@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowLeft } from 'lucide-react';
 import { useGameLogic } from './hooks/useGameLogic';
+import { useAndroidBackButton } from './hooks/useAndroidBackButton';
 import { GameGrid } from './components/GameGrid';
 import { GameControls } from './components/GameControls';
 import { ScoreBoard } from './components/ScoreBoard';
@@ -24,6 +25,12 @@ function App() {
     isTileHinted,
     goToHome
   } = useGameLogic();
+
+  // Handle Android back button
+  useAndroidBackButton({
+    isGameStarted: gameStats.gameStarted,
+    onBackToHome: goToHome
+  });
 
   const handleHint = () => {
     showHint();
