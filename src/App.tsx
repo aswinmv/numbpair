@@ -8,8 +8,11 @@ import { ScoreBoard } from './components/ScoreBoard';
 import { HowToPlay } from './components/HowToPlay';
 import { Footer } from './components/Footer';
 import { HomeScreen } from './components/HomeScreen';
+import { SplashScreen } from './components/SplashScreen';
 
 function App() {
+  const [showSplash, setShowSplash] = React.useState(true);
+  
   const {
     grid,
     selectedTiles,
@@ -35,6 +38,15 @@ function App() {
   const handleHint = () => {
     showHint();
   };
+
+  const handleSplashComplete = () => {
+    setShowSplash(false);
+  };
+
+  // Show splash screen first
+  if (showSplash) {
+    return <SplashScreen onComplete={handleSplashComplete} />;
+  }
 
   // Show home screen when game is not started
   if (!gameStats.gameStarted) {
