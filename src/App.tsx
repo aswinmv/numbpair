@@ -1,4 +1,5 @@
 import React from 'react';
+import { ArrowLeft } from 'lucide-react';
 import { useGameLogic } from './hooks/useGameLogic';
 import { GameGrid } from './components/GameGrid';
 import { GameControls } from './components/GameControls';
@@ -20,7 +21,8 @@ function App() {
     showHint,
     hasAvailableMatches,
     isTileSelected,
-    isTileHinted
+    isTileHinted,
+    goToHome
   } = useGameLogic();
 
   const handleHint = () => {
@@ -32,17 +34,28 @@ function App() {
     return <HomeScreen onStartGame={startGame} />;
   }
 
+  // Game Page - Distinct from Home Page
   return (
     <div className="min-h-screen min-h-[100dvh] bg-gray-50 flex flex-col overflow-hidden">
       {/* Main Content Container */}
       <div className="flex-1 flex flex-col items-center justify-center px-3 py-2 sm:py-3 overflow-hidden">
         <div className="w-full max-w-sm sm:max-w-md space-y-2 sm:space-y-3 flex flex-col items-center h-full justify-center">
           
-          {/* Header - Centered */}
-          <div className="text-center space-y-1 flex-shrink-0">
+          {/* Back Button and Header */}
+          <div className="flex items-center justify-between w-full flex-shrink-0">
+            <button
+              onClick={goToHome}
+              className="inline-flex items-center justify-center p-2 rounded-xl transition-all duration-200 hover:scale-105 active:scale-95 touch-manipulation min-h-[44px] min-w-[44px] bg-white text-gray-700 border-2 border-gray-200 hover:bg-gray-50 hover:border-gray-300 hover:shadow-md active:bg-gray-100"
+            >
+              <ArrowLeft className="w-5 h-5" />
+            </button>
+            
             <h1 className="text-2xl sm:text-2xl md:text-3xl font-bold text-black tracking-wide font-space-grotesk">
               Numbpair
             </h1>
+            
+            {/* Spacer to center the title */}
+            <div className="w-[44px]"></div>
           </div>
 
           {/* Score Board - Centered */}

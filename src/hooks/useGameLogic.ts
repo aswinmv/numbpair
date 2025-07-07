@@ -267,6 +267,18 @@ export const useGameLogic = () => {
     startGame();
   }, [startGame]);
 
+  // Go back to home page
+  const goToHome = useCallback(() => {
+    setSelectedTiles([]);
+    setGameStats({
+      score: 0,
+      moves: 0,
+      gameStarted: false
+    });
+    setAnimatingTiles(new Set());
+    setHintTiles(new Set());
+    setGrid([]);
+  }, []);
   // Get hint (find first available match)
   const getHint = useCallback((): [Tile, Tile] | null => {
     for (let row = 0; row < grid.length; row++) {
@@ -332,6 +344,7 @@ export const useGameLogic = () => {
     selectTile,
     startGame,
     resetGame,
+    goToHome,
     addNewRow,
     getHint,
     showHint,
