@@ -30,7 +30,7 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
         fadeOut ? 'opacity-0' : 'opacity-100'
       }`}
       style={{
-        backgroundColor: '#E9F0FB',
+        backgroundColor: '#f8f8f8',
         backgroundImage: `
           radial-gradient(circle at 1px 1px, rgba(0,0,0,0.02) 1px, transparent 0),
           radial-gradient(circle at 2px 2px, rgba(0,0,0,0.01) 1px, transparent 0)
