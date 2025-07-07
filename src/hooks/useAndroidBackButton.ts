@@ -10,11 +10,23 @@ export const useAndroidBackButton = ({ isGameStarted, onBackToHome }: UseAndroid
     const handleBackButton = (event: KeyboardEvent) => {
       // Detect Android back button (Escape key)
       if (event.key === 'Escape') {
-        event.preventDefault();
-        
         if (isGameStarted) {
-          // If on Game Page, go back to Home Page
-          onBackToHome();
+          // If on Game Page, show confirmation popup
+          event.preventDefault();
+          
+          const shouldExit = window.confirm('Do you really want to exit the game?');
+          
+          if (shouldExit) {
+            // User chose Yes - allow app to exit
+            // We need to trigger the actual exit behavior
+            if (window.history.length > 1) {
+              window.history.back();
+            } else {
+              // If no history, try to close the window/app
+              window.close();
+            }
+          }
+          // If user chose No, do nothing (stay on Game Page)
         } else {
           // If on Home Page, allow app to exit (don't prevent default)
           // This will be handled by the browser/app container
