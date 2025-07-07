@@ -48,6 +48,14 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
         >
           Cooplix
         </h1>
+        <p 
+          className="text-gray-500 text-lg sm:text-xl font-light mt-4 font-space-grotesk"
+          style={{
+            letterSpacing: '0.01em'
+          }}
+        >
+          Play with purpose
+        </p>
       </div>
     </div>
   );
