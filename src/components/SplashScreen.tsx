@@ -26,7 +26,7 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
 
   return (
     <div 
-      className={`min-h-screen min-h-[100dvh] flex items-center justify-center transition-opacity duration-500 ${
+      className={`min-h-screen min-h-[100dvh] flex items-center justify-center transition-opacity duration-500 fixed inset-0 ${
         fadeOut ? 'opacity-0' : 'opacity-100'
       }`}
       style={{
@@ -38,7 +38,7 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
         backgroundSize: '20px 20px, 40px 40px'
       }}
     >
-      <div className="text-center">
+      <div className="text-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
         <h1 
           className="text-6xl sm:text-7xl md:text-8xl font-bold text-black font-space-grotesk animate-pulse"
           style={{
