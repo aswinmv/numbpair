@@ -1,5 +1,4 @@
 import { useState, useCallback, useEffect } from 'react';
-import { gameLimiter, generateSecureId, validateGameState, secureStorage } from '../utils/security';
 
 export interface Tile {
   value: number;
@@ -52,19 +51,13 @@ export const useGameLogic = () => {
 
   // Initialize grid with numbers 1-9 (13 rows x 9 columns)
   const initializeGrid = useCallback(() => {
-    // Rate limiting check
-    if (!gameLimiter.isAllowed('grid_init')) {
-      console.warn('Rate limit exceeded for grid initialization');
-      return;
-    }
-
     const newGrid: Tile[][] = [];
     for (let row = 0; row < 13; row++) {
       const gridRow: Tile[] = [];
       for (let col = 0; col < 9; col++) {
         gridRow.push({
           value: Math.floor(Math.random() * 9) + 1,
-          id: generateSecureId(),
+          id: `${row}-${col}`,
           row,
           col,
           isEmpty: false,
@@ -125,12 +118,6 @@ export const useGameLogic = () => {
 
   // Handle tile selection
   const selectTile = useCallback((tile: Tile, rowIndex: number, colIndex: number) => {
-    // Rate limiting check
-    if (!gameLimiter.isAllowed('tile_select')) {
-      console.warn('Rate limit exceeded for tile selection');
-      return;
-    }
-
     if (tile.isEmpty || tile.isPlaceholder || tile.isMatched || animatingTiles.has(tile.id)) return;
 
     // Clear hint when player takes action
@@ -231,12 +218,6 @@ export const useGameLogic = () => {
 
   // Add new row(s) at the bottom
   const addNewRow = useCallback(() => {
-    // Rate limiting check
-    if (!gameLimiter.isAllowed('add_row')) {
-      console.warn('Rate limit exceeded for adding rows');
-      return;
-    }
-
     // Clear hint when adding new row
     clearHint();
     
@@ -252,7 +233,7 @@ export const useGameLogic = () => {
         for (let col = 0; col < 9; col++) {
           newRow.push({
             value: Math.floor(Math.random() * 9) + 1,
-            id: generateSecureId(),
+            id: `${newRowIndex}-${col}`,
             row: newRowIndex,
             col,
             isEmpty: false,
@@ -270,12 +251,6 @@ export const useGameLogic = () => {
 
   // Start new game
   const startGame = useCallback(() => {
-    // Rate limiting check
-    if (!gameLimiter.isAllowed('start_game')) {
-      console.warn('Rate limit exceeded for starting game');
-      return;
-    }
-
     initializeGrid();
     setSelectedTiles([]);
     setGameStats({
@@ -355,35 +330,10 @@ export const useGameLogic = () => {
 
   // Initialize grid on mount
   useEffect(() => {
-    // Load saved game state securely
-    const savedState = secureStorage.getItem('gameState');
-    if (savedState && validateGameState(savedState)) {
-      setGameStats(prevStats => ({
-        ...prevStats,
-        score: savedState.score,
-        moves: savedState.moves
-      }));
-    }
-
     if (!gameStats.gameStarted) {
       initializeGrid();
     }
   }, [gameStats.gameStarted, initializeGrid]);
-
-  // Save game state securely
-  useEffect(() => {
-    if (gameStats.gameStarted) {
-      const stateToSave = {
-        score: gameStats.score,
-        moves: gameStats.moves,
-        timestamp: Date.now()
-      };
-      
-      if (validateGameState(stateToSave)) {
-        secureStorage.setItem('gameState', stateToSave);
-      }
-    }
-  }, [gameStats.score, gameStats.moves, gameStats.gameStarted]);
 
   return {
     grid,

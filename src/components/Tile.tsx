@@ -1,5 +1,4 @@
 import React from 'react';
-import { sanitizeInput } from '../utils/security';
 import { Tile as TileType } from '../hooks/useGameLogic';
 
 interface TileProps {
@@ -76,7 +75,7 @@ export const Tile: React.FC<TileProps> = ({
     if (tile.isEmpty) return '';
     if (tile.isPlaceholder) return '·';
     if (tile.isMatched) return 'N';
-    return sanitizeInput(String(tile.value));
+    return tile.value;
   };
 
   return (
